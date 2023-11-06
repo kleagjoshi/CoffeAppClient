@@ -1,15 +1,21 @@
+class Order{
+    constructor(_fullName,_email,_description)
+    {
+        if(arguments.length !=3){
+            throw new Error("Please provide 3 properties");
+        }
+
+        this.fullName=_fullName;
+        this.email=_email;
+        this.description=_description;
+    }
+}
+
 const orders = [
     
-        {
-            fullName:"First Name",
-            email:"first@epoka.edu.al",
-            description:"First order description"
-        },
-        {
-            fullName:"Second Name",
-            email:"second@epoka.edu.al",
-            description:"Second order description"
-        }
+        new Order("First Customer","first@epoka.edu.al","First Customer order description"),
+        new Order("Second Customer","second@epoka.edu.al","Second Customer order description"),
+        new Order("Third Customer","third@epoka.edu.al","Third Customer order description")
    
 ];
 
