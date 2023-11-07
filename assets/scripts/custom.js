@@ -1,9 +1,9 @@
 //START - ALL PAGES---
 
 //anonymous function
-setInterval(() =>{document.getElementById("currentYear").innerHTML=new Date().toLocaleTimeString();},1000
-)
-document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+setInterval(() =>{$("#currentYear").html(new Date().toLocaleTimeString());
+},1000)
+
 //END - ALL PAGES---
 
 //START - ORDER PAGE
@@ -14,26 +14,26 @@ function validateAndSubmit(event){
     var isValidated=true;
 
     //reset all errors
-    document.getElementById("fullNameSpn").innerHTML="";
-    document.getElementById("emailSpn").innerHTML="";
-    document.getElementById("descriptionSpn").innerHTML="";
+    $("#fullNameSpn").html("");
+    $("#emailSpn").html("");
+    $("#descriptionSpn").html("");
 
     //validate input values
-    const fullName = document.getElementById("fullName").value;
+    const fullName = $("#fullName").val();
     if(fullName.length<3){
-        document.getElementById("fullNameSpn").innerHTML="Full name must be min 3 chars";
+        $("#fullNameSpn").html("Full name must be min 3 chars");
         isValidated=false;
     }
 
-    const email = document.getElementById("email").value;
+    const email = $("#email").val();
     if(!(email.endsWith("@epoka.edu.al"))){
-        document.getElementById("emailSpn").innerHTML="This is not a valid Epoka email";
+        $("#emailSpn").html("This is not a valid Epoka email");
         isValidated=false;
     }
 
-    const description = document.getElementById("description").value;
+    const description = $("#description").val();
     if(description.length < 16){
-        document.getElementById("descriptionSpn").innerHTML="Description must be min 16 chars";
+        $("#descriptionSpn").html("Description must be min 16 chars");
         isValidated=false;
     }
 
@@ -58,30 +58,13 @@ function handleSubmit(fullname_,email_,description_){
 
     console.log("newOrder Object=",newOrder);
 
-    //call API endpoint
-
-    try{
-        //call API
-        console.log("Calling api...");
-    }catch{
-        //API calls fails
-        console.log("API call failed...");
-    }finally{
-        //always called
-        console.log("Finally...");
-    }
-
 }
 
 //END - ORDER PAGE
 
 //START - ADD EVENT LISTENER
 
-document.addEventListener("DOMContentLoaded",(event)=>{
-    const orderNowBtn = document.getElementById("submitBtn");
-    if(orderNowBtn){
-        orderNowBtn.addEventListener("click",validateAndSubmit)
-    }
+$(document).ready(function(){
+    $("#submitBtn").click(validateAndSubmit)
 })
-
 //END - ADD EVENT LISTENER
